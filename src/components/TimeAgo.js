@@ -29,28 +29,42 @@ export default function TimeAgo(props) {
   }
 
   useEffect(() => {
+    console.log("didMounted")
     setTimeAgo(countIncludeTime(targetTime))
   }, [])
 
   useEffect(() => {
     if (dynamic) {
+      console.log("dynamic", dynamic)
       setTimeAgo(countIncludeTime(targetTime))
       const interval = setInterval(() => {
         setTimeAgo(countIncludeTime(targetTime))
       }, 1000 * 60)
       return () => clearInterval(interval)
     }
-  }, [targetTime, dynamic])
+  }, [dynamic, targetTime])
 
   useEffect(() => {
     if (includeTime) {
+      console.log("include", includeTime)
       setTimeAgo(countIncludeTime(targetTime))
       const interval = setInterval(() => {
         setTimeAgo(countIncludeTime(targetTime))
       }, 1000)
       return () => clearInterval(interval)
     }
-  }, [includeTime])
+  }, [includeTime, targetTime])
+
+  useEffect(() => {
+    if (!includeTime && !dynamic) {
+      console.log("include", includeTime)
+      setTimeAgo(countIncludeTime(targetTime))
+      const interval = setInterval(() => {
+        setTimeAgo(countIncludeTime(targetTime))
+      }, 3000)
+      return () => clearInterval(interval)
+    }
+  }, [includeTime, dynamic, targetTime])
 
   return <span className="big">{timeAgo}</span>
 }
