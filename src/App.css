@@ -13,6 +13,7 @@ input[type="text"] {
   border-radius: 25px;
   outline: none;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .form {
@@ -31,6 +32,7 @@ input[type="text"] {
   font-size: 14px;
   width: 100px;
   font-weight: 700;
+  outline: none;
 }
 
 label {
@@ -38,6 +40,6 @@ label {
   font-weight: 700;
 }
 
-span {
+.big {
   font-size: 40px;
 }

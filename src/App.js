@@ -12,8 +12,27 @@ function App() {
   const dynamic = useRef(false)
   const includeTime = useRef(false)
 
+  function validate(input) {
+    let error = ""
+    const patern1 = /^(\d{4}).(\d{2}).(\d{2}).(\d{2}).(\d{2}).(\d{2})$/g
+    if (!input.match(patern1)) {
+      error = "Invalid dateTime format."
+      console.error(error)
+    }
+
+    if (input.trim() === "") {
+      error = "A dateTime is required."
+      console.error(error)
+    }
+
+    return error
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
+
+    const error = validate(time)
+    if (error) return
 
     setData({
       time,
@@ -24,6 +43,7 @@ function App() {
 
   return (
     <div className="container">
+      <h3>Use a valid dateTime format like 2020-05-28 05:45:20</h3>
       <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,6 +70,18 @@ function App() {
           includeTime={data.includeTime}
         />
       )}
+      <p>
+        In order to see the changes you have to select the options and also
+        click on Submit button
+      </p>
+      <ul>
+        <li>
+          <b>Dynamic</b>: Update the component after 1 minute interval.
+        </li>
+        <li>
+          <b>Include Time</b>: Update the component after 1 second interval.
+        </li>
+      </ul>
     </div>
   )
 }

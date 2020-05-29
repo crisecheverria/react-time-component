@@ -52,5 +52,5 @@ export default function TimeAgo(props) {
     }
   }, [includeTime])
 
-  return <span>{timeAgo}</span>
+  return <span className="big">{timeAgo}</span>
 }
